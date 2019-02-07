@@ -58,13 +58,13 @@ public class FishGame {
 		home = world.insertFishHome();
 		
 		
-		// rockNum is number of rocks
-		int rockNum = 10;
+		// rockNum is number of rocks 
+		int rockNum = 50;
 		for (int i=0; i<rockNum; i++) {
 			world.insertRockRandomly();
 		}
 		
-		// TODO(lab) Make the snail!
+		//inserts a snail at a random position
 		world.insertSnailRandomly();
 		
 		// Make the player out of the 0th fish color.
@@ -119,8 +119,8 @@ public class FishGame {
 				missing.remove(wo);
 				
 				// Remove from world.
-				// TODO(lab): add to found instead! (So we see objectsFollow work!)
-				world.remove(wo);
+				
+				found.add((Fish) wo);
 				
 				// Increase score when you find a fish!
 				score += 10;
