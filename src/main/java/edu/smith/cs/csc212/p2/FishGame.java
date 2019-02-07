@@ -65,6 +65,7 @@ public class FishGame {
 		}
 		
 		// TODO(lab) Make the snail!
+		world.insertSnailRandomly();
 		
 		// Make the player out of the 0th fish color.
 		player = new Fish(0, world);
@@ -142,7 +143,8 @@ public class FishGame {
 		for (Fish lost : missing) {
 			// 30% of the time, lost fish move randomly.
 			if (rand.nextDouble() < 0.3) {
-				// TODO(lab): What goes here?
+				lost.moveRandomly(); 
+				
 			}
 		}
 	}
