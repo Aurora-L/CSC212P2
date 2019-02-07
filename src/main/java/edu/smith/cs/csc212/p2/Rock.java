@@ -29,6 +29,7 @@ public class Rock extends WorldObject {
 	
 	// TODO(lab): introduce a member here that indexes the ROCK_COLORS array.
 	
+	
 	/**
 	 * Construct a Rock in our world.
 	 * @param world - the grid world.
