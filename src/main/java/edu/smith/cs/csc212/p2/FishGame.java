@@ -34,6 +34,11 @@ public class FishGame {
 	List<Fish> found;
 	
 	/**
+	 * List of rocks drawn
+	 */
+	List<Rock> rocks; 
+	
+	/**
 	 * Number of steps!
 	 */
 	int stepsTaken;
@@ -61,8 +66,12 @@ public class FishGame {
 		// rockNum is number of rocks 
 		int rockNum = 50;
 		for (int i=0; i<rockNum; i++) {
-			world.insertRockRandomly();
+			Rock rock = world.insertRockRandomly();
+			//rocks.add(rock);
 		}
+		
+		//inserts a falling rock at a random position
+		world.insertFallingRockRandomly();
 		
 		//inserts a snail at a random position
 		world.insertSnailRandomly();
@@ -142,9 +151,15 @@ public class FishGame {
 		Random rand = ThreadLocalRandom.current();
 		for (Fish lost : missing) {
 			// 30% of the time, lost fish move randomly.
+			if (lost.color == 3) {
+				if (rand.nextDouble() < 0.9) {
+					lost.moveRandomly();
+			}
+				
 			if (rand.nextDouble() < 0.3) {
 				lost.moveRandomly(); 
-				
+			
+				}
 			}
 		}
 	}
