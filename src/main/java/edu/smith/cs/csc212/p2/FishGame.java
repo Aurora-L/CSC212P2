@@ -33,10 +33,16 @@ public class FishGame {
 	 * These are fish we've found!
 	 */
 	List<Fish> found;
-
+	
+	/**
+	 * These are fish we've gotten home!
+	 */
+	List<Fish> inHome;
+	
 	/**
 	 * List of rocks drawn
 	 */
+	
 	List<Rock> rocks;
 
 	/**
@@ -60,6 +66,7 @@ public class FishGame {
 
 		missing = new ArrayList<Fish>();
 		found = new ArrayList<Fish>();
+		inHome = new ArrayList<Fish>();
 
 		// Add a home!
 		home = world.insertFishHome();
@@ -68,8 +75,7 @@ public class FishGame {
 		int rockNum = 50;
 		for (int i = 0; i < rockNum; i++) {
 			Rock rock = world.insertRockRandomly();
-			// rocks.add(rock);
-		}
+					}
 
 		// inserts a falling rock at a random position
 		world.insertFallingRockRandomly();
@@ -107,7 +113,7 @@ public class FishGame {
 	 */
 	public boolean gameOver() {
 		// TODO(P2) We want to bring the fish home before we win!
-		return missing.isEmpty();
+		return missing.isEmpty() && found.isEmpty();
 	}
 
 	/**
@@ -132,7 +138,7 @@ public class FishGame {
 				// Remove from world.
 				Fish f = (Fish) wo;
 				found.add(f);
-
+				
 				// Increase score when you find a fish!
 				//score += 10;
 
@@ -140,6 +146,16 @@ public class FishGame {
 					score += 100;
 				} else {
 					score += 10;
+				}
+			}
+			//puts fish in home if player returns them there.
+			if (wo.isFishHome()) {
+				for (Fish f : found) {
+					inHome.add(f);
+					world.remove(f);
+				}
+				for (Fish f : inHome) {
+					found.remove(f);
 				}
 			}
 
@@ -161,11 +177,11 @@ public class FishGame {
 		for (Fish lost : missing) {
 			// 30% of the time, lost fish move randomly.
 			if (lost.color == 8) {
-				if (rand.nextDouble() < 0.9) {
+				if (rand.nextDouble() < 0.4) {
 					lost.moveRandomly();
 				}
 			} else {
-				if (rand.nextDouble() < 0.5) {
+				if (rand.nextDouble() < 0.3) {
 					lost.moveRandomly();
 
 				}

@@ -128,6 +128,14 @@ public abstract class WorldObject {
 	public boolean isRock() {
 		return this instanceof Rock;
 	}
+	/**
+	 * Is this the Fish Home?
+	 * 
+	 * @return true if this is the Fish Home
+	 */
+	public boolean isFishHome() {
+		return this instanceof FishHome;
+	}
 
 	/**
 	 * Is this the player?
